@@ -1,0 +1,40 @@
+{
+  "name": "07-store",
+  "version": "0.0.1",
+  "dependencies": {
+    "@astrojs/db": "^0.14.11",
+    "@astrojs/netlify": "^6.3.0",
+    "@astrojs/react": "^4.2.4",
+    "@auth/core": "^0.37.4",
+    "@nanostores/react": "^1.0.0",
+    "@tailwindcss/vite": "^4.1.4",
+    "@types/react": "^19.1.2",
+    "@types/react-dom": "^19.1.2",
+    "astro": "^5.7.4",
+    "auth-astro": "^4.2.0",
+    "bcryptjs": "^3.0.2",
+    "js-cookie": "^3.0.5",
+    "nanostores": "^1.0.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "sweetalert2": "^11.19.1",
+    "swiper": "^11.2.6",
+    "tailwindcss": "^4.1.4",
+    "uuid": "^11.1.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "dev:remote": "astro dev --remote",
+    "build": "astro build",
+    "build:remote": "npm run db:push && astro build --remote",
+    "preview": "astro preview",
+    "astro": "astro",
+    "db:push": "astro db push",
+    "db:push:remote": "astro db push --remote",
+    "db:seed:remote": "astro db execute db/seed.ts --remote"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/js-cookie": "^3.0.6"
+  }
+}
