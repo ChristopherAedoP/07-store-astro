@@ -9,7 +9,13 @@ interface Props {
 	image?: string;
 }
 
-const { title = 'Astro Store' } = Astro.props;
+//http://elaborate-kitsune-e1dc72.netlify.app//images/products/1740176-00-A_1.jpg
+
+const {
+	title = 'Astro Store',
+	description = 'chris mi tienda',
+	image = 'http://elaborate-kitsune-e1dc72.netlify.app//images/products/1740176-00-A_1.jpg',
+} = Astro.props;
 ---
 
 <html lang="es">
@@ -19,6 +25,25 @@ const { title = 'Astro Store' } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+
+		<!-- Meta tags -->
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:title" content={title} />
+		<meta property="og:url" content={Astro.url} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:image" content={image} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={Astro.url} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={image} />
+
 		<ClientRouter />
 	</head>
 	<body>
