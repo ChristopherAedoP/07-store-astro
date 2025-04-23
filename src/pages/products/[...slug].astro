@@ -26,7 +26,7 @@ const { product, images } = data;
 	<!-- image={image} -->
 
 	<div class="grid grid-cols-1 md:grid-cols-3 w-full gap-3">
-		<ProductSlideshow images={images} />
+		<ProductSlideshow images={images.map( i => i.image)} />
 
 		<section>
 			<h2 class="text-2xl font-bold">{product.title}</h2>

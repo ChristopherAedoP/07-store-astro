@@ -43,10 +43,17 @@ export const getProductByPage = defineAction({
         `;
 
 		const { rows } = await db.run(productsQuery);
+
+		const product = rows.map((product) => {
+			return {
+				...product,
+				images: product.images ? product.images : 'no-image.png'
+			}
+		})
 		//console.log('rows', rows);
 
 		return {
-			products: rows as unknown as ProductWithImages[],
+			products: product as unknown as ProductWithImages[] ,//rows as unknown as ProductWithImages[],
 			totalPages: totalPages,
 		};
 	},

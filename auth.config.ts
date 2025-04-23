@@ -25,20 +25,26 @@ export default defineConfig({
 					.from(User)
 					.where(eq(User.email, `${email}`));
 
-				// console.log('user db', user);
+				//console.log('user db', user);
 
 				if (!user) {
 					throw new Error('User not found');
 				}
+				// console.log('password', password);
 				// console.log('user.password  : ', user.password);
 				// console.log('user.password b: ', bcrypt.hashSync(password as string));
+				const pass = password as string;
 
-				if (bcrypt.compareSync(password as string, user.password)) {
+				const match = await bcrypt.compare(pass, user.password);
+				//console.log('match', match);
+
+				if (!match) {
+					console.log('Invalid password log');
 					throw new Error('Invalid password');
 				}
 
 				const { password: _, ...rest } = user;
-				// console.log('user', rest);
+				//console.log('user', rest);
 				return rest;
 			},
 		}),
@@ -46,7 +52,6 @@ export default defineConfig({
 
 	callbacks: {
 		jwt: ({ token, user }) => {
-
 			if (user) {
 				token.user = user;
 			}
@@ -55,10 +60,9 @@ export default defineConfig({
 		},
 
 		session: ({ session, token }) => {
-
 			session.user = token.user as AdapterUser;
-			console.log({ SessionUser: session.user });
-			console.log({ session });
+			//console.log({ SessionUser: session.user });
+			//console.log({ session });
 			return session;
 		},
 	},
